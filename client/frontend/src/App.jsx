@@ -6,6 +6,7 @@ import AlertBell from "./AlertBell";
 import AlertMonitor from "./AlertMonitor";
 import HistoricalData from "./HistoricalData";
 import NetworkMonitor from "./NetworkMonitor";
+import Loading from "./Loading";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -37,6 +38,7 @@ const MAX_HISTORY_LENGTH = 20;
 const RECONNECT_TIMEOUT = 3000;
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [metrics, setMetrics] = useState(null);
   const [histories, setHistories] = useState({
     cpu: [],
@@ -115,6 +117,15 @@ function App() {
     },
     [thresholds, handleNewAlert]
   );
+
+  useEffect(() => {
+    if (isLoading) {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   useEffect(() => {
     if (metrics) {
@@ -318,6 +329,10 @@ function App() {
       </div>
     );
   };
+
+  if (isLoading) {
+    return <Loading onComplete={() => setIsLoading(false)} />;
+  }
   return (
     <div className="App">
       <AlertBell alerts={alerts} />
