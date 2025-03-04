@@ -46,11 +46,11 @@ function App() {
     disk: [],
   });
   const [connectionStatus, setConnectionStatus] = useState("connecting");
-  // ####REMEMBER TO CHANGE THE VALUES FOR REAL DEPLOYMENT
+  // ###CHANGE THE VALUES FOR REAL DEPLOYMENT
   const [thresholds, setThresholds] = useState({
     cpu: 110,
     ram: 100,
-    disk: 100,
+    disk: 80,
   });
 
   const [alertSettings, setAlertSettings] = useState({
