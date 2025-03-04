@@ -1,8 +1,7 @@
-version: "3.8"
 services:
   frontend:
     build:
-      context: ./frontend
+      context: ./Client/frontend # ✅
       dockerfile: Dockerfile
     ports:
       - "80:80"
@@ -16,7 +15,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./backend/metrics_history.db:/app/metrics_history.db
+      - ./backend/metrics_history.db:/app/metrics_history.db # ✅ Ensure persistence
     networks:
       - monitoring-network
 
