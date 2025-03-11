@@ -18,7 +18,9 @@ import smtplib
 
 # 2. App initialization and configurations
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": ["http://localhost:5174", "http://localhost:3000", "http://localhost:5000"]}})
+CORS(app)
+
+# CORS(app, resources={r"/*": {"origins": ["http://localhost:5174", "http://localhost:3000", "http://localhost:5000"]}})
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
