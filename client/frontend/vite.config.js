@@ -1,14 +1,19 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    nodePolyfills({
+      include: ["crypto", "buffer"],
+    }),
+  ],
   define: {
-    'require("crypto")': 'require("crypto-browserify")',
+    global: "globalThis",
   },
-  resolve: {
-    alias: {
-      crypto: "crypto-browserify",
-    },
+  build: {
+    outDir: "dist",
+    sourcemap: true,
   },
 });
