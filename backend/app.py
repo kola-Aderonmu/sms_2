@@ -143,6 +143,10 @@ def get_connected_macs():
         logger.error(f"Error getting MAC addresses: {str(e)}")
     return len(connected_macs)
 
+
+
+
+
 def get_process_connections():
     connections_info = []
     try:
@@ -156,7 +160,8 @@ def get_process_connections():
                     'local_address': f"{conn.laddr.ip}:{conn.laddr.port}",
                     'remote_address': f"{conn.raddr.ip}:{conn.raddr.port}" if conn.raddr else "-",
                     'timestamp': current_time,
-                    'status': conn.status
+                    'status': conn.status,
+                    'ram_usage': process.memory_percent()
                 })
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 continue

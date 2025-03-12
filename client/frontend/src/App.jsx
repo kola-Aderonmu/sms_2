@@ -308,6 +308,7 @@ function App() {
                 <th>PID</th>
                 <th>Local Address</th>
                 <th>Remote Address</th>
+                <th>RAM Usage (%)</th>
                 <th>Timestamp</th>
                 <th>Status</th>
               </tr>
@@ -319,6 +320,9 @@ function App() {
                   <td>{conn.pid}</td>
                   <td>{conn.local_address}</td>
                   <td>{conn.remote_address}</td>
+                  <td>
+                    {conn.ram_usage ? `${conn.ram_usage.toFixed(2)}%` : "N/A"}
+                  </td>
                   <td>{formatTimestamp(conn.timestamp)}</td>
                   <td>{conn.status}</td>
                 </tr>
